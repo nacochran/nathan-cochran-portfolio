@@ -1,0 +1,52 @@
+/* Tailwind CSS */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  padding: 0px;
+  margin: 0px;
+}
+
+/* CSS fonts */
+@font-face {
+  font-family: "ZillaSlab";
+  src: url("src/assets/fonts/ZillaSlab-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "ZillaSlab";
+  src: url("src/assets/fonts/ZillaSlab-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "ZillaSlab";
+  src: url("src/assets/fonts/ZillaSlab-Italic.ttf") format("truetype");
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "JosefinSans";
+  src: url("src/assets/fonts/JosefinSans-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "JosefinSans";
+  src: url("src/assets/fonts/JosefinSans-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "JosefinSans";
+  src: url("src/assets/fonts/JosefinSans-Italic.ttf") format("truetype");
+  font-weight: normal;
+  font-style: italic;
+}

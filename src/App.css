@@ -1,0 +1,18 @@
+/* Setup Fonts */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "JosefinSans", sans-serif;
+}
+
+p,
+li {
+  font-family: "ZillaSlab", serif;
+}
+
+.page {
+  padding: 25px;
+}
