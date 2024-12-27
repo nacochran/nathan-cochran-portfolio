@@ -14,8 +14,7 @@ li {
 }
 
 .page {
-  padding: 25px;
-  padding-top: 75px;
+  padding: 100px 25px 75px 25px;
   max-width: 1000px;
   margin: auto auto;
 }
