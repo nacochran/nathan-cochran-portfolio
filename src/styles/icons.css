@@ -1,27 +1,90 @@
-
 /* Dark icons */
 .icon-threejs,
-.icon-threejs path { color: #000000; fill: #000000; }
+.icon-threejs path {
+  color: #000000;
+  fill: #000000;
+}
+
 .icon-nextjs,
-.icon-nextjs path { color: #000000; fill: #000000; }
+.icon-nextjs path {
+  color: #000000;
+  fill: #000000;
+}
+
 .icon-express,
-.icon-express path { color: #000000; fill: #000000; }
+.icon-express path {
+  color: #000000;
+  fill: #000000;
+}
 
 /* Colored icons */
 .icon-obsidian,
-.icon-obsidian path { color: #483699; fill: #483699; }
+.icon-obsidian path {
+  color: #483699;
+  fill: #483699;
+}
+
 .icon-affinity-photo,
-.icon-affinity-photo path { color: #00E5FF; fill: #00E5FF; }
+.icon-affinity-photo path {
+  color: #00E5FF;
+  fill: #00E5FF;
+}
+
 .icon-affinity-designer,
-.icon-affinity-designer path { color: #FF3B30; fill: #FF3B30; }
+.icon-affinity-designer path {
+  color: #FF3B30;
+  fill: #FF3B30;
+}
+
 .icon-affinity-publisher,
-.icon-affinity-publisher path { color: #FF298A; fill: #FF298A; }
+.icon-affinity-publisher path {
+  color: #FF298A;
+  fill: #FF298A;
+}
+
 .icon-davinci,
-.icon-davinci path { color: #FF3366; fill: #FF3366; }
+.icon-davinci path {
+  color: #FF3366;
+  fill: #FF3366;
+}
+
 .icon-office,
-.icon-office path { color: #D83B01; fill: #D83B01; }
+.icon-office path {
+  color: #D83B01;
+  fill: #D83B01;
+}
+
 .icon-indesign,
-.icon-indesign path { color: #FF3366; fill: #FF3366; }
+.icon-indesign path {
+  color: #FF3366;
+  fill: #FF3366;
+}
+
+/* Adobe icon size adjustments */
+.icon-illustrator,
+.icon-indesign,
+.icon-premiere,
+.icon-aftereffects {
+  transform: scale(1.25);
+  transition: transform 0.2s;
+}
+
+/* Override hover scale for Adobe icons */
+.group:hover .icon-illustrator,
+.group:hover .icon-indesign,
+.group:hover .icon-premiere,
+.group:hover .icon-aftereffects {
+  transform: scale(1.375);
+  /* 1.25 * 1.1 to match the hover scale of other icons */
+}
+
+/* Scale Adobe icons in current skill display */
+img[src*="illustrator.svg"],
+img[src*="indesign.svg"],
+img[src*="premiere.svg"],
+img[src*="aftereffects.svg"] {
+  transform: scale(1.25);
+}
 
 /* Add hover effects for better visibility on light backgrounds */
 .icon-nextjs:hover,
@@ -29,7 +92,7 @@
 .icon-threejs:hover,
 .icon-threejs:hover path,
 .icon-express:hover,
-.icon-express:hover path { 
-  color: #666666; 
+.icon-express:hover path {
+  color: #666666;
   fill: #666666;
 }
