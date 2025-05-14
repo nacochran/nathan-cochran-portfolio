@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import SkillButton from "./SkillButton";
 import CompetencyBar from "./CompetencyBar";
 
@@ -267,14 +267,59 @@ const skills = {
 };
 
 const SkillsPanel = () => {
-  // State to track the currently selected skill
   const [currentSkill, setCurrentSkill] = useState(skills.languages[0]);
+  const currentSkillRef = useRef(null);
+
+  const handleSkillClick = (skill) => {
+    setCurrentSkill(skill);
+    // Wait for state update to complete before scrolling
+    setTimeout(() => {
+      if (currentSkillRef.current) {
+        const yOffset = -20;
+        const element = currentSkillRef.current;
+        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = elementPosition + yOffset;
+
+        // Custom easing function
+        const start = window.pageYOffset;
+        const distance = offsetPosition - start;
+        const duration = 800; // ms
+        let startTime = null;
+
+        function animation(currentTime) {
+          if (startTime === null) startTime = currentTime;
+          const timeElapsed = currentTime - startTime;
+          const progress = Math.min(timeElapsed / duration, 1);
+
+          // Ease-in-out cubic function
+          const ease = progress < 0.5
+            ? 4 * progress * progress * progress
+            : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+
+          window.scrollTo(0, start + (distance * ease));
+
+          if (timeElapsed < duration) {
+            requestAnimationFrame(animation);
+          }
+        }
+
+        requestAnimationFrame(animation);
+      }
+    }, 0);
+  };
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="py-6 space-y-6">
       {/* Current Skill Display */}
       {currentSkill && (
-        <div className="p-4 bg-gray-100 rounded-lg shadow-lg">
+        <div
+          ref={currentSkillRef}
+          className="p-4 bg-gray-100 rounded-lg shadow-lg opacity-0 transform translate-y-4 transition-all duration-500 ease-out"
+          style={{
+            opacity: currentSkill ? 1 : 0,
+            transform: currentSkill ? 'translateY(0)' : 'translateY(1rem)'
+          }}
+        >
           <div className="flex items-center space-x-4">
             <img src={currentSkill.img_src} alt={currentSkill.title} className="w-16 h-16" />
             <h2 className="text-2xl font-semibold">{currentSkill.title}</h2>
@@ -295,7 +340,7 @@ const SkillsPanel = () => {
                   key={index}
                   img_src={skill.img_src}
                   hover_description={skill.hover_description}
-                  click_effect={() => setCurrentSkill(skill)}
+                  click_effect={() => handleSkillClick(skill)}
                 />
               ))}
             </div>
