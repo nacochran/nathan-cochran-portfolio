@@ -1,0 +1,11 @@
+.tree-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  min-height: 400px;
+}
+
+.tree-container img {
+  position: relative;
+  z-index: 1;
+}

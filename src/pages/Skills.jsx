@@ -1,5 +1,4 @@
 // src/pages/Skills.jsx
-import React from 'react';
 import SkillsPanel from '../components/SkillsPanel';
 
 const Skills = () => {

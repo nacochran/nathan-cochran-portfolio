@@ -1,5 +1,6 @@
 // src/components/ProjectPanel.jsx
-import React from 'react';
+
+import PropTypes from 'prop-types';
 
 const ServicePanel = ({ service }) => {
   return (
@@ -11,6 +12,13 @@ const ServicePanel = ({ service }) => {
       </div>
     </div>
   );
+};
+
+ServicePanel.propTypes = {
+  service: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired
+  }).isRequired
 };
 
 export default ServicePanel;

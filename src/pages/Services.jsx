@@ -1,5 +1,4 @@
 // src/pages/Services.jsx
-import React from 'react';
 import ServicePanel from '../components/ServicePanel';
 
 const services = [

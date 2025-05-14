@@ -1,5 +1,7 @@
 .header {
   height: 300px;
+  position: relative;
+  width: 100%;
 }
 
 .background-image {
@@ -11,12 +13,14 @@
   background-position: center;
   background-repeat: no-repeat;
   filter: blur(3px);
-  width: 100vw;
+  width: 100%;
   height: 297px;
-  z-index: -1;
+  z-index: -2;
 }
 
 .header-top {
+  position: relative;
+  z-index: 1;
   background-color: rgba(0, 0, 0, 0.2);
   color: white;
   height: 100%;
@@ -27,38 +31,105 @@
   flex-direction: row;
 }
 
+@keyframes slideRight {
+  from {
+    transform: translateX(-150px) rotate(-180deg);
+    opacity: 0;
+    filter: blur(10px);
+  }
+
+  to {
+    transform: translateX(0px) rotate(0deg);
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
 .header-image {
   width: 150px;
   height: 150px;
   border-radius: 50%;
   border: 4px solid white;
+  animation: slideRight 0.5s ease-out forwards;
 }
 
 .header-content {
   text-align: left;
 }
 
+@keyframes fadeIn {
+  from {
+    color: rgba(255, 255, 255, 0);
+  }
+
+  to {
+    color: rgba(255, 255, 255, 1);
+  }
+}
+
 .header-content h1 {
   margin: 0;
   font-size: 2rem;
   font-family: "JosefinSans";
+  color: rgba(255, 255, 255, 0);
+  animation: fadeIn 0.5s ease-out 0.4s forwards;
 }
 
 .header-content p {
   margin: 5px 0 0;
   font-size: 1rem;
   font-family: "ZillaSlab", serif;
+  color: rgba(255, 255, 255, 0);
+  animation: fadeIn 0.5s ease-out 0.4s forwards;
 }
 
 .navbar {
   background-color: #292929;
   min-width: 45vw;
+  max-width: 80vw;
   border-radius: 5px 25px 5px 25px;
-  padding: 10px;
+  padding: 10px 20px;
   position: absolute;
   top: 300px;
   left: 50vw;
   transform: translate(-50%, -50%);
+  z-index: 5;
+}
+
+.navbar.menu-open {
+  border-radius: 5px 25px 0px 0px;
+}
+
+.navbar-header {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  cursor: pointer;
+}
+
+.current-page {
+  color: white;
+  font-family: "JosefinSans", sans-serif;
+  font-size: 1.1rem;
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  position: relative;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  margin: 5px 0;
+  transition: 0.3s;
 }
 
 .navbar ul {
@@ -67,6 +138,7 @@
   justify-content: center;
   margin: 0;
   padding: 0;
+  transition: 0.3s;
 }
 
 .navbar li {
@@ -76,16 +148,71 @@
 .navbar a {
   color: white;
   text-decoration: none;
+  transition: 0.2s;
 }
 
 .navbar a:hover {
   text-decoration: underline;
 }
 
+@keyframes snowfall {
+  from {
+    top: -100px;
+  }
+
+  to {
+    top: 320px;
+  }
+}
+
+@keyframes rotate-clockwise {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes rotate-counterclockwise {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  to {
+    transform: translate(-50%, -50%) rotate(-360deg);
+  }
+}
+
+.snowflake-container {
+  position: absolute;
+  width: 100%;
+  height: 300px;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.snowflake {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background-image: url('/snowflake.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  will-change: transform, top;
+}
 
 /* Mobile Screens */
 @media (max-width: 768px) {
   .header {
+    height: 350px;
+  }
+
+  .snowflake-container {
     height: 350px;
   }
 
@@ -95,6 +222,65 @@
 
   .navbar {
     top: 350px;
+    min-width: unset;
+    max-width: 90%;
+    width: 90%;
+    padding: 15px 20px;
+  }
+
+  .navbar-header {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .dropdown-menu {
+    display: none !important;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #292929;
+    border-radius: 0 0 5px 25px;
+    padding: 10px 0;
+    margin-top: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .navbar.menu-open .dropdown-menu {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navbar.menu-open .menu-toggle span:first-child {
+    transform: rotate(45deg) translate(6px, 6px);
+  }
+
+  .navbar.menu-open .menu-toggle span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .navbar.menu-open .menu-toggle span:last-child {
+    transform: rotate(-45deg) translate(6px, -6px);
+  }
+
+  .navbar li {
+    margin: 10px 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  .navbar a {
+    display: block;
+    padding: 8px 0;
+  }
+
+  .navbar a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    text-decoration: none;
   }
 
   .header-top {

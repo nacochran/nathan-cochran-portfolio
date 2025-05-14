@@ -1,5 +1,4 @@
-// src/pages/Projects.jsx
-import React from 'react';
+// src/pages/Projects.jsx/components/ProjectPanel';
 import ProjectPanel from '../components/ProjectPanel';
 
 const projects = [

@@ -13,8 +13,21 @@ li {
   font-family: "ZillaSlab", serif;
 }
 
+body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
 .page {
   padding: 100px 25px 75px 25px;
   max-width: 1000px;
-  margin: auto auto;
+  margin: 0 auto;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 100px 15px 75px 15px;
+  }
 }
