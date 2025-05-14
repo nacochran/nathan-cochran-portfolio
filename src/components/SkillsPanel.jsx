@@ -1,9 +1,10 @@
 import { useState } from "react";
 import SkillButton from "./SkillButton";
+import CompetencyBar from "./CompetencyBar";
 
 // Skills data with standard icons
 const skills = {
-  languages: [
+  "languages": [
     {
       title: "JavaScript",
       img_src: "/icons/javascript.svg",
@@ -30,14 +31,14 @@ const skills = {
       img_src: "/icons/cpp.svg",
       hover_description: "C++ Programming",
       full_description: "C++ programming with emphasis on performance-critical applications.",
-      competency: 7
+      competency: 6
     },
     {
       title: "PHP",
       img_src: "/icons/php.svg",
       hover_description: "PHP Development",
       full_description: "PHP development for web applications and WordPress themes/plugins.",
-      competency: 8
+      competency: 5
     },
     {
       title: "HTML",
@@ -60,86 +61,86 @@ const skills = {
       img_src: "/icons/react.svg",
       hover_description: "React Development",
       full_description: "Modern React development with hooks, context, and state management.",
-      competency: 9
+      competency: 8
     },
     {
       title: "Next.js",
       img_src: "/icons/nextjs.svg",
       hover_description: "Next.js Framework",
       full_description: "Next.js for server-side rendering and static site generation.",
-      competency: 8
+      competency: 2
     },
     {
       title: "Node.js",
       img_src: "/icons/nodejs.svg",
       hover_description: "Node.js Development",
       full_description: "Node.js backend development with Express and various frameworks.",
-      competency: 8
+      competency: 5
     },
     {
       title: "Express.js",
       img_src: "/icons/express.svg",
       hover_description: "Express.js Framework",
       full_description: "Express.js for building RESTful APIs and web applications.",
-      competency: 8
+      competency: 7
     },
     {
       title: "Three.js",
       img_src: "/icons/threejs.svg",
       hover_description: "Three.js 3D Graphics",
       full_description: "Three.js for 3D graphics and WebGL applications.",
-      competency: 7
+      competency: 6
     },
     {
       title: "TailwindCSS",
       img_src: "/icons/tailwind.svg",
       hover_description: "Tailwind CSS",
       full_description: "Tailwind CSS for utility-first styling and rapid development.",
-      competency: 9
+      competency: 7
     },
     {
       title: "Bootstrap",
       img_src: "/icons/bootstrap.svg",
       hover_description: "Bootstrap Framework",
       full_description: "Bootstrap for responsive and mobile-first web development.",
-      competency: 8
+      competency: 7
     },
     {
       title: "WordPress",
       img_src: "/icons/wordpress.svg",
       hover_description: "WordPress Development",
       full_description: "WordPress theme and plugin development, customization, and management.",
-      competency: 8
+      competency: 9
     },
     {
       title: "Enfold",
       img_src: "/icons/enfold.png",
       hover_description: "Enfold Theme",
       full_description: "Enfold theme customization and development for WordPress.",
-      competency: 8
+      competency: 9
     },
     {
       title: "Unity",
       img_src: "/icons/unity.svg",
       hover_description: "Unity Game Engine",
       full_description: "Unity game development with C# and cross-platform deployment.",
-      competency: 7
+      competency: 3
     }
   ],
-  management: [
+  "data & management tools": [
     {
       title: "Git",
       img_src: "/icons/git.svg",
       hover_description: "Git Version Control",
       full_description: "Git version control including branching strategies and collaboration workflows.",
-      competency: 9
+      competency: 8
     },
     {
       title: "MongoDB",
       img_src: "/icons/mongodb.svg",
       hover_description: "MongoDB Database",
       full_description: "MongoDB for NoSQL database design and management.",
-      competency: 8
+      competency: 6
     },
     {
       title: "MySQL",
@@ -160,31 +161,31 @@ const skills = {
       img_src: "/icons/monday.svg",
       hover_description: "Monday.com",
       full_description: "Project management and team collaboration using Monday.com.",
-      competency: 8
+      competency: 6
     },
     {
       title: "Obsidian",
       img_src: "/icons/obsidian.svg",
       hover_description: "Obsidian Notes",
       full_description: "Knowledge management and documentation using Obsidian.",
-      competency: 8
+      competency: 6
     },
     {
       title: "Google Workspace",
       img_src: "/icons/google-workspace.svg",
       hover_description: "Google Workspace",
-      full_description: "Proficient in Google Docs, Sheets, and Slides for collaborative work and data analysis.",
+      full_description: "Expert in Google Docs, Sheets, and Slides for collaborative work and data analysis.",
       competency: 9
     },
     {
       title: "Microsoft Office",
       img_src: "/icons/office.svg",
       hover_description: "Microsoft Office",
-      full_description: "Expert in Microsoft Word, Excel, and PowerPoint for document creation and data analysis.",
-      competency: 9
+      full_description: "Proficient in Microsoft Word, Excel, and PowerPoint for document creation and data analysis.",
+      competency: 7
     }
   ],
-  design: [
+  "design & creative tools": [
     {
       title: "Photoshop",
       img_src: "/icons/photoshop.svg",
@@ -204,63 +205,63 @@ const skills = {
       img_src: "/icons/indesign.svg",
       hover_description: "Adobe InDesign",
       full_description: "Page layout and publication design.",
-      competency: 7
+      competency: 6
     },
     {
       title: "Premiere Pro",
       img_src: "/icons/premiere.svg",
       hover_description: "Adobe Premiere",
       full_description: "Video editing and post-production.",
-      competency: 7
+      competency: 8
     },
     {
       title: "After Effects",
       img_src: "/icons/aftereffects.svg",
       hover_description: "Adobe After Effects",
       full_description: "Motion graphics and visual effects.",
-      competency: 7
+      competency: 8
     },
     {
       title: "Affinity Photo",
       img_src: "/icons/affinity-photo.svg",
       hover_description: "Affinity Photo",
       full_description: "Professional photo editing and manipulation with Affinity Photo 2.",
-      competency: 8
+      competency: 7
     },
     {
       title: "Affinity Designer",
       img_src: "/icons/affinity-designer.svg",
       hover_description: "Affinity Designer",
       full_description: "Vector graphics and illustration with Affinity Designer 2.",
-      competency: 8
+      competency: 7
     },
     {
       title: "Affinity Publisher",
       img_src: "/icons/affinity-publisher.svg",
       hover_description: "Affinity Publisher",
       full_description: "Page layout and publishing with Affinity Publisher 2.",
-      competency: 7
+      competency: 2
     },
     {
       title: "Figma",
       img_src: "/icons/figma.svg",
       hover_description: "Figma Design",
       full_description: "UI/UX design and prototyping with Figma.",
-      competency: 8
+      competency: 3
     },
     {
       title: "Blender",
       img_src: "/icons/blender.svg",
       hover_description: "Blender 3D",
       full_description: "3D modeling, animation, and rendering with Blender.",
-      competency: 7
+      competency: 2
     },
     {
       title: "DaVinci Resolve",
       img_src: "/icons/davinci.svg",
       hover_description: "DaVinci Resolve",
       full_description: "Professional video editing and color grading.",
-      competency: 7
+      competency: 3
     }
   ]
 };
@@ -277,7 +278,7 @@ const SkillsPanel = () => {
           <div className="flex items-center space-x-4">
             <img src={currentSkill.img_src} alt={currentSkill.title} className="w-16 h-16" />
             <h2 className="text-2xl font-semibold">{currentSkill.title}</h2>
-            <p>Competency: {currentSkill.competency}/10</p>
+            <CompetencyBar competency={currentSkill.competency} />
           </div>
           <p className="mt-4 text-gray-700">{currentSkill.full_description}</p>
         </div>

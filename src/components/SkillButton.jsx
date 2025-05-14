@@ -7,13 +7,13 @@ const SkillButton = ({ img_src, hover_description, click_effect }) => {
 
   // Extract icon name from img_src to create CSS class
   const iconName = img_src.split('/').pop().replace('.svg', '');
-  const iconClass = `w-10 h-10 transition-transform group-hover:scale-110 icon-${iconName}`;
+  const iconClass = `w-10 h-10 transition-transform group-hover:scale-110 icon-${iconName} z-10`;
 
   return (
     <div className="relative inline-block">
       {/* Tooltip */}
       {isHovered && (
-        <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-700 text-white text-sm px-2 py-1 rounded-md shadow-lg pointer-events-none">
+        <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-700 text-white text-sm px-2 py-1 rounded-md shadow-lg pointer-events-none z-20">
           {hover_description}
         </div>
       )}
