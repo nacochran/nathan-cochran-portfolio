@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 
 function Footer() {
@@ -14,7 +13,7 @@ function Footer() {
           <div>
             <h4 className="text-xl font-semibold mb-4">About the Website</h4>
             <p className="text-sm">
-              Built using React.js, Tailwind CSS, and p5.js. I also utilized Inkscape to generate SVGs for the animated graphics.
+              Built using key technologies such as React.js, Tailwind CSS, and Vite. I utilized the Affinity suite as my main vector and image editing software for graphics used on the website.
             </p>
           </div>
 

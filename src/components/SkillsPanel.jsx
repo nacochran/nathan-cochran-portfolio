@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import SkillButton from "./SkillButton";
 import CompetencyBar from "./CompetencyBar";
 
@@ -57,6 +57,20 @@ const skills = {
   ],
   "frameworks & developer tools": [
     {
+      title: "WordPress",
+      img_src: "/icons/wordpress.svg",
+      hover_description: "WordPress Development",
+      full_description: "WordPress theme and plugin development, customization, and management.",
+      competency: 9
+    },
+    {
+      title: "Enfold",
+      img_src: "/icons/enfold.png",
+      hover_description: "Enfold Theme",
+      full_description: "Enfold theme customization and development for WordPress.",
+      competency: 9
+    },
+    {
       title: "React.js",
       img_src: "/icons/react.svg",
       hover_description: "React Development",
@@ -104,20 +118,6 @@ const skills = {
       hover_description: "Bootstrap Framework",
       full_description: "Bootstrap for responsive and mobile-first web development.",
       competency: 7
-    },
-    {
-      title: "WordPress",
-      img_src: "/icons/wordpress.svg",
-      hover_description: "WordPress Development",
-      full_description: "WordPress theme and plugin development, customization, and management.",
-      competency: 9
-    },
-    {
-      title: "Enfold",
-      img_src: "/icons/enfold.png",
-      hover_description: "Enfold Theme",
-      full_description: "Enfold theme customization and development for WordPress.",
-      competency: 9
     },
     {
       title: "Unity",
@@ -269,6 +269,30 @@ const skills = {
 const SkillsPanel = () => {
   const [currentSkill, setCurrentSkill] = useState(skills.languages[0]);
   const currentSkillRef = useRef(null);
+  const animationFrameRef = useRef(null);
+  const isAutoScrollingRef = useRef(false);
+
+  // Add scroll event listener on mount
+  useEffect(() => {
+    const handleUserScroll = () => {
+      if (isAutoScrollingRef.current) {
+        // Cancel the animation if it's running
+        if (animationFrameRef.current) {
+          cancelAnimationFrame(animationFrameRef.current);
+          animationFrameRef.current = null;
+        }
+        isAutoScrollingRef.current = false;
+      }
+    };
+
+    window.addEventListener('wheel', handleUserScroll, { passive: true });
+    window.addEventListener('touchmove', handleUserScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener('wheel', handleUserScroll);
+      window.removeEventListener('touchmove', handleUserScroll);
+    };
+  }, []);
 
   const handleSkillClick = (skill) => {
     setCurrentSkill(skill);
@@ -286,6 +310,9 @@ const SkillsPanel = () => {
         const duration = 800; // ms
         let startTime = null;
 
+        // Set auto-scrolling flag
+        isAutoScrollingRef.current = true;
+
         function animation(currentTime) {
           if (startTime === null) startTime = currentTime;
           const timeElapsed = currentTime - startTime;
@@ -298,12 +325,17 @@ const SkillsPanel = () => {
 
           window.scrollTo(0, start + (distance * ease));
 
-          if (timeElapsed < duration) {
-            requestAnimationFrame(animation);
+          if (timeElapsed < duration && isAutoScrollingRef.current) {
+            animationFrameRef.current = requestAnimationFrame(animation);
+          } else {
+            // Reset flags when animation completes
+            isAutoScrollingRef.current = false;
+            animationFrameRef.current = null;
           }
         }
 
-        requestAnimationFrame(animation);
+        // Start the animation
+        animationFrameRef.current = requestAnimationFrame(animation);
       }
     }, 0);
   };

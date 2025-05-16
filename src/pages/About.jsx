@@ -55,9 +55,7 @@ const About = () => {
         <div className="order-2 md:order-1">
           <h1 className="text-3xl font-bold mb-4">Welcome!</h1>
           <p className="text-lg">
-            Lorem ipsum odor amet, consectetuer adipiscing elit. Ad imperdiet facilisis metus habitasse neque mus dis at. Tempor nostra habitant parturient fermentum tortor quam fames aliquet. Amet ad euismod sociosqu ad arcu lectus. Ullamcorper nisl accumsan a vehicula inceptos pretium lacus. Et consectetur phasellus mauris primis pellentesque fames maecenas.
-
-            Justo placerat bibendum vel leo lacinia eleifend vulputate in. Augue auctor laoreet massa eleifend dui potenti euismod. In rutrum convallis etiam senectus dictum habitant arcu porttitor aptent. Id quisque ullamcorper molestie duis libero ad massa elit. Diam integer platea posuere ultrices ultricies finibus pulvinar pulvinar. Lacinia lobortis hac natoque; odio suscipit maximus lobortis.
+            Hey, everyone! Nathan here. At a early age I fell in love with coding, and ever since then I've been learning new ways to bring my creative ideas to life. Although programming is still a passion of mine, my aspirations have expanded to include many other facets of the creative process, from graphic design to videography. One of my favorite types of projects to work on are web apps, which provide a unique blend of UI/UX and programming challenges.
           </p>
         </div>
 

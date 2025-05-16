@@ -1,13 +1,35 @@
 // src/components/ContactForm.jsx
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import emailjs from 'emailjs-com';
 
 const ContactForm = () => {
+  const [searchParams] = useSearchParams();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: '',
+    subject: 'General Inquiry' // Default subject
   });
+
+  useEffect(() => {
+    // Get service from URL parameters
+    const service = searchParams.get('service');
+    if (service) {
+      // Convert service slug back to readable format
+      const serviceName = service
+        .split('_')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+
+      // Set subject
+      setFormData(prev => ({
+        ...prev,
+        subject: `Service Request: ${serviceName}`,
+        message: `Hi Nathan,\n\nI'm interested in your ${serviceName} service. I would like to discuss...\n\n`
+      }));
+    }
+  }, [searchParams]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -25,7 +47,12 @@ const ContactForm = () => {
         '2fqtguzccKCt7_tpu' // EmailJS public key
       )
       .then((response) => {
-        // TODO: Clear form data
+        setFormData({
+          name: '',
+          email: '',
+          message: '',
+          subject: 'General Inquiry'
+        });
         console.log('SUCCESS!', response.status, response.text);
         alert('Message sent successfully!');
       })
@@ -79,6 +106,24 @@ const ContactForm = () => {
 
       <div>
         <label
+          htmlFor="subject"
+          className="block text-sm font-medium text-gray-700 mb-1"
+        >
+          Subject
+        </label>
+        <input
+          type="text"
+          name="subject"
+          id="subject"
+          value={formData.subject}
+          onChange={handleChange}
+          required
+          className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+        />
+      </div>
+
+      <div>
+        <label
           htmlFor="message"
           className="block text-sm font-medium text-gray-700 mb-1"
         >
@@ -102,7 +147,6 @@ const ContactForm = () => {
       </button>
     </form>
   );
-
 };
 
 export default ContactForm;

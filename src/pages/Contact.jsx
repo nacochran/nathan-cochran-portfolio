@@ -6,9 +6,7 @@ const Contact = () => {
     <div className="page">
       <h1 className="text-3xl font-bold mb-4">Get in Touch!</h1>
       <p className="text-lg">
-        Lorem ipsum odor amet, consectetuer adipiscing elit. Ad imperdiet facilisis metus habitasse neque mus dis at. Tempor nostra habitant parturient fermentum tortor quam fames aliquet. Amet ad euismod sociosqu ad arcu lectus. Ullamcorper nisl accumsan a vehicula inceptos pretium lacus. Et consectetur phasellus mauris primis pellentesque fames maecenas.
-
-        Justo placerat bibendum vel leo lacinia eleifend vulputate in. Augue auctor laoreet massa eleifend dui potenti euismod. In rutrum convallis etiam senectus dictum habitant arcu porttitor aptent. Id quisque ullamcorper molestie duis libero ad massa elit. Diam integer platea posuere ultrices ultricies finibus pulvinar pulvinar. Lacinia lobortis hac natoque; odio suscipit maximus lobortis.
+        I'm always on the outlet for new opportunities to expand my work portfolio and build new relationships. Whether you’re a business looking for creative talent within your company, or if you are needing some form of contract or freelance work done, feel free to reach out below and I’ll respond as soon as circumstances permit.
       </p>
 
       <ContactForm />
