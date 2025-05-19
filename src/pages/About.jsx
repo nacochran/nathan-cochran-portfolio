@@ -55,7 +55,7 @@ const About = () => {
         <div className="order-2 md:order-1">
           <h1 className="text-3xl font-bold mb-4">Welcome!</h1>
           <p className="text-lg">
-            Hey, everyone! Nathan here. At a early age I fell in love with coding, and ever since then I've been learning new ways to bring my creative ideas to life. Although programming is still a passion of mine, my aspirations have expanded to include many other facets of the creative process, from graphic design to videography. One of my favorite types of projects to work on are web apps, which provide a unique blend of UI/UX and programming challenges.
+            Hey, everyone! Nathan here. At a early age I fell in love with coding, and ever since then I&apos;ve been learning new ways to bring my creative ideas to life. Although programming is still a passion of mine, my aspirations have expanded to include many other facets of the creative process, from graphic design to videography. One of my favorite types of projects to work on are web apps, which provide a unique blend of UI/UX and programming challenges.
           </p>
         </div>
 
