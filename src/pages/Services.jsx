@@ -21,8 +21,8 @@ const Services = () => {
     <div className="page">
       <h1 className="text-3xl font-bold mb-4">Services</h1>
       <p className="text-lg">
-        I love working with technology in many sectors and I'm always excited to explore more avenues to challenge myself.
-        Below I have listed some of the services that I am currently offering. If you are business needing talent in one of the following areas, feel free to reach out and git a bid for your requested service. Besides freelance projects, I am also available to do contract work and/or positions within a company as well.
+        I love working with technology in many sectors and I&apos;m always excited to explore more avenues to challenge myself.
+        Below I have listed some of the services that I am currently offering. If you are a business needing talent in one of the following areas, feel free to reach out and get a bid for your requested service. Besides freelance projects, I am also available to do contract work and/or positions within a company as well.
       </p>
 
       <div className="space-y-6">

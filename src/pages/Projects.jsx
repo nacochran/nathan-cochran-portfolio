@@ -67,9 +67,9 @@ const projects = [
   },
   {
     name: "Escape the Castle 2",
-    description: "Escape the Castle is a 2D platformer game inspired by the original Super Marios Bros that I created in 2020. This project has probably consumed more of my hours than any other programming project up to date, where I've spent nearly two years developing it. From integrating calculus in my physics engine, to optimizing animation and graphics, to the intricacies of level design, this project has so many firsts for me in it. But, even though it was such a huge landmark for me, it still shows many signs of amateur development, both in terms of the menu design and in the underlying physics engine.",
+    description: "Escape the Castle is a 2D platformer game inspired by the original Super Marios Bros that I created in 2020. This project has probably consumed more of my hours than any other programming project up to date, where I've spent nearly two years developing it. From integrating calculus in my physics engine, to optimizing animation and graphics, to the intricacies of level design, this project has so many firsts for me in it. But, even though it was such a huge landmark for me, the flaws in this project still show how much I've learned in the last 5 years since I created it.",
     technologies: ["JavaScript", "Procesisng.js", "CSS", "HTML"],
-    view: "https://www.khanacademy.org/computer-programming/escape-the-castle-2-a-mario-game/6096264874246144",
+    view: "https://www.khanacademy.org/computer-programming/helping/6652484887166976",
     image: "mario_remake.png"
   }
 ];

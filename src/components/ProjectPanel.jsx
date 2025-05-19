@@ -10,17 +10,14 @@ const ProjectPanel = ({ project }) => {
   return (
     <>
       <motion.div
-        initial={{ x: 100, opacity: 0 }}
+        initial={{ opacity: 0 }}
         whileInView={{
-          x: 0,
           opacity: 1,
           transition: {
-            type: "spring",
-            duration: 1,
-            bounce: 0.3
+            duration: 0.5
           }
         }}
-        viewport={{ once: true, amount: 0.7 }}
+        viewport={{ once: true, margin: "-100px" }}
         className="p-6 bg-white/90 backdrop-blur-sm shadow-lg rounded-lg space-y-6 border border-white/20 relative overflow-hidden group"
       >
         {/* Frost effect overlay */}
@@ -29,75 +26,43 @@ const ProjectPanel = ({ project }) => {
         {/* Project Image and Title */}
         <div className="flex items-center gap-4 relative">
           <div className="relative group/image">
-            <motion.div
-              whileHover={{ scale: 1.1 }}
-              transition={{ type: "spring", stiffness: 400, damping: 17 }}
-            >
+            <div>
               <img
                 src={project.image}
                 alt={project.name}
-                className="w-[100px] h-[100px] rounded-full object-cover cursor-pointer shadow-lg border-2 border-white/50"
+                className="w-[100px] h-[100px] rounded-full object-cover cursor-pointer shadow-lg border-2 border-white/50 transition-transform duration-300 hover:scale-110"
                 onClick={() => setIsLightboxOpen(true)}
               />
               <div className="absolute inset-0 rounded-full bg-black bg-opacity-20 opacity-0 group-hover/image:opacity-100 transition-opacity cursor-pointer"
                 onClick={() => setIsLightboxOpen(true)}
               />
-            </motion.div>
+            </div>
           </div>
-          <motion.h2
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="text-2xl font-semibold text-gray-800"
-          >
-            {project.name}
-          </motion.h2>
+          <h2 className="text-2xl font-semibold text-gray-800">{project.name}</h2>
         </div>
 
         {/* Project Description */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
-        >
+        <div>
           <p className="text-gray-600">{project.description}</p>
-        </motion.div>
+        </div>
 
         {/* Project Technologies */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4 }}
-        >
+        <div>
           <h3 className="text-lg font-medium text-gray-700">Technologies Used:</h3>
           <ul className="flex flex-wrap gap-3 mt-2">
             {project.technologies.map((tech, index) => (
-              <motion.li
+              <li
                 key={index}
-                initial={{ opacity: 0, scale: 0 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{
-                  delay: 0.6 + index * 0.1,
-                  type: "spring",
-                  stiffness: 400,
-                  damping: 10
-                }}
                 className="bg-white/50 backdrop-blur-sm text-gray-700 px-4 py-2 rounded-lg text-sm border border-white/20 shadow-sm hover:shadow-md transition-shadow"
               >
                 {tech}
-              </motion.li>
+              </li>
             ))}
           </ul>
-        </motion.div>
+        </div>
 
         {/* Project Links */}
-        <motion.div
-          className="flex gap-4 mt-4"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.6 }}
-        >
+        <div className="flex gap-4 mt-4">
           {project.github && (
             <a
               href={project.github}
@@ -118,7 +83,7 @@ const ProjectPanel = ({ project }) => {
               View Product
             </a>
           )}
-        </motion.div>
+        </div>
       </motion.div>
 
       <ImageLightbox
