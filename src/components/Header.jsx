@@ -110,7 +110,7 @@ const Header = () => {
       </div>
       <div className="header-top">
         <img
-          src="src/assets/profile_pic.png"
+          src="/profile_pic.png"
           alt="Profile"
           className="header-image"
         />
