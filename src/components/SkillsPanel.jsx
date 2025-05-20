@@ -354,10 +354,8 @@ const SkillsPanel = () => {
         >
           <div className="flex flex-wrap items-center gap-4">
             <img src={currentSkill.img_src} alt={currentSkill.title} className="w-16 h-16" />
-            <div className="flex flex-wrap items-center gap-4">
-              <h2 className="text-2xl font-semibold">{currentSkill.title}</h2>
-              <CompetencyBar competency={currentSkill.competency} />
-            </div>
+            <h2 className="text-2xl font-semibold">{currentSkill.title}</h2>
+            <CompetencyBar competency={currentSkill.competency} />
           </div>
           <p className="mt-4 text-gray-700">{currentSkill.full_description}</p>
         </div>
