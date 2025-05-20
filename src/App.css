@@ -19,7 +19,7 @@ body {
 }
 
 .page {
-  padding: 100px 25px 75px 25px;
+  padding: 100px 45px 75px 45px;
   max-width: 1000px;
   margin: 0 auto;
   box-sizing: border-box;
@@ -28,6 +28,10 @@ body {
 
 @media (max-width: 768px) {
   .page {
-    padding: 100px 15px 75px 15px;
+    padding: 100px 35px 75px 35px;
+  }
+
+  .header-image {
+    margin-top: -35px;
   }
 }
