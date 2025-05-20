@@ -35,7 +35,7 @@ function Footer() {
             <h4 className="text-xl font-semibold mb-4">Follow Me</h4>
             <ul>
               <li>
-                <Link to="https://www.facebook.com/cochrancoding" className="text-sm hover:text-blue-400" target="_blank" rel="noopener noreferrer">Facebook</Link>
+                <Link to="https://www.facebook.com/cochrandev" className="text-sm hover:text-blue-400" target="_blank" rel="noopener noreferrer">Facebook</Link>
               </li>
               <li>
                 <Link to="https://github.com/nacochran" className="text-sm hover:text-blue-400" target="_blank" rel="noopener noreferrer">GitHub</Link>
