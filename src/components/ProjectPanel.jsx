@@ -18,10 +18,10 @@ const ProjectPanel = ({ project }) => {
           }
         }}
         viewport={{ once: true, margin: "-100px" }}
-        className="p-6 bg-white/90 backdrop-blur-sm shadow-lg rounded-lg space-y-6 border border-white/20 relative overflow-hidden group"
+        className="p-6 bg-white/90 backdrop-blur-sm shadow-lg rounded-lg space-y-6 border border-white/20 relative overflow-hidden group select-text"
       >
         {/* Frost effect overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+        <div className="absolute inset-0 bg-gradient-to-r from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
 
         {/* Project Image and Title */}
         <div className="flex items-center gap-4 relative">

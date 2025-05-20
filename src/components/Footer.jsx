@@ -13,7 +13,7 @@ function Footer() {
           <div>
             <h4 className="text-xl font-semibold mb-4">About the Website</h4>
             <p className="text-sm">
-              Built using key technologies such as React.js, Tailwind CSS, and Vite. I utilized the Affinity suite as my main vector and image editing software for graphics used on the website.
+              Built using key technologies such as React.js, Tailwind CSS, and Vite. I utilized the Affinity suite as my main vector and image editing software for graphics on the website.
             </p>
           </div>
 

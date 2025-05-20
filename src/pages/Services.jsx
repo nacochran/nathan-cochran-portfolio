@@ -12,7 +12,7 @@ const services = [
   // },
   {
     name: "Graphic Designer",
-    description: "I have experience creating various types of graphics and branding materials. Whether your business needs a logo, business card, or other form of branding material get in touch and we'll get you your perfect design!"
+    description: "I have experience creating various types of graphics and branding materials. Whether your business needs a logo, business card, or other form of branding material, get in touch and we'll get you your perfect design!"
   }
 ]
 
