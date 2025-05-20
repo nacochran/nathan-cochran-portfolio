@@ -352,10 +352,12 @@ const SkillsPanel = () => {
             transform: currentSkill ? 'translateY(0)' : 'translateY(1rem)'
           }}
         >
-          <div className="flex items-center space-x-4">
+          <div className="flex flex-wrap items-center gap-4">
             <img src={currentSkill.img_src} alt={currentSkill.title} className="w-16 h-16" />
-            <h2 className="text-2xl font-semibold">{currentSkill.title}</h2>
-            <CompetencyBar competency={currentSkill.competency} />
+            <div className="flex flex-wrap items-center gap-4">
+              <h2 className="text-2xl font-semibold">{currentSkill.title}</h2>
+              <CompetencyBar competency={currentSkill.competency} />
+            </div>
           </div>
           <p className="mt-4 text-gray-700">{currentSkill.full_description}</p>
         </div>
