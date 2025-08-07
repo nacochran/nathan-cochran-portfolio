@@ -43,7 +43,17 @@ jobs:
       - name: Create tar.gz archive
         run: tar -czf dist.tar.gz -C dist .
 
-      - name: Deploy via SSH with file transfer
+      - name: Upload tar.gz file
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          port: ${{ secrets.SERVER_PORT }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: "dist.tar.gz"
+          target: "/tmp/"
+
+      - name: Extract and deploy files
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SERVER_HOST }}
@@ -56,13 +66,3 @@ jobs:
             cd ${{ secrets.REMOTE_PATH }}
             tar -xzf /tmp/dist.tar.gz
             rm /tmp/dist.tar.gz
-
-      - name: Prepare and upload files
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.SERVER_USER }}
-          port: ${{ secrets.SERVER_PORT }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "dist.tar.gz"
-          target: "/tmp/"
