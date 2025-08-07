@@ -40,13 +40,13 @@ jobs:
           name: dist
           path: dist
 
-      - name: Deploy via SSH (rsync)
-        uses: easingthemes/ssh-deploy@v5.1.0
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          REMOTE_HOST: ${{ secrets.SERVER_HOST }}
-          REMOTE_USER: ${{ secrets.SERVER_USER }}
-          REMOTE_PORT: ${{ secrets.SERVER_PORT }}
-          SOURCE: "dist/"
-          TARGET: ${{ secrets.REMOTE_PATH }}
-          ARGS: "-avzr --delete"
+      - name: Deploy via SFTP
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+        with:
+          username: ${{ secrets.SERVER_USER }}
+          server: ${{ secrets.SERVER_HOST }}
+          port: ${{ secrets.SERVER_PORT }}
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          local_path: "./dist/*"
+          remote_path: ${{ secrets.REMOTE_PATH }}
+          delete_remote_files: true
