@@ -40,13 +40,23 @@ jobs:
           name: dist
           path: dist
 
-      - name: Deploy via SFTP
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
         with:
+          host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
-          server: ${{ secrets.SERVER_HOST }}
           port: ${{ secrets.SERVER_PORT }}
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
-          local_path: "./dist/*"
-          remote_path: ${{ secrets.REMOTE_PATH }}
-          delete_remote_files: true
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            rm -rf ${{ secrets.REMOTE_PATH }}/*
+            mkdir -p ${{ secrets.REMOTE_PATH }}
+
+      - name: Upload files via SCP
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          port: ${{ secrets.SERVER_PORT }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: "dist/*"
+          target: ${{ secrets.REMOTE_PATH }}
