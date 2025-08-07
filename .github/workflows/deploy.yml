@@ -41,7 +41,10 @@ jobs:
           path: dist
 
       - name: Create tar.gz archive
-        run: tar -czf dist.tar.gz -C dist .
+        run: |
+          cd dist
+          ls -la  # Debug: List all files including hidden ones
+          tar -czf ../dist.tar.gz .
 
       - name: Upload tar.gz file
         uses: appleboy/scp-action@v0.1.7
