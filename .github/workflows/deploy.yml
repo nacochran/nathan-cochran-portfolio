@@ -40,32 +40,14 @@ jobs:
           name: dist
           path: dist
 
-      - name: Create tar.gz archive
-        run: |
-          cd dist
-          ls -la  # Debug: List all files including hidden ones
-          tar -czf ../dist.tar.gz .
-
-      - name: Upload tar.gz file
+      - name: Deploy files via SCP
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           port: ${{ secrets.SERVER_PORT }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "dist.tar.gz"
-          target: "/tmp/"
-
-      - name: Extract and deploy files
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.SERVER_USER }}
-          port: ${{ secrets.SERVER_PORT }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            rm -rf ${{ secrets.REMOTE_PATH }}/*
-            mkdir -p ${{ secrets.REMOTE_PATH }}
-            cd ${{ secrets.REMOTE_PATH }}
-            tar -xzf /tmp/dist.tar.gz
-            rm /tmp/dist.tar.gz
+          source: "dist/*,dist/.*"
+          target: ${{ secrets.REMOTE_PATH }}
+          rm: true
+          strip_components: 1
