@@ -40,6 +40,9 @@ jobs:
           name: dist
           path: dist
 
+      - name: Checkout repo (for .htaccess)
+        uses: actions/checkout@v4
+
       - name: Verify build output includes dotfiles
         run: |
           echo "Listing dist contents (including hidden):"
@@ -62,3 +65,13 @@ jobs:
           REMOTE_PATH: ${{ secrets.REMOTE_PATH }}
         run: |
           rsync -az --delete -e "ssh -i ~/.ssh/site_key -p $SERVER_PORT -o StrictHostKeyChecking=no" dist/ $SERVER_USER@$SERVER_HOST:$REMOTE_PATH/
+
+      - name: Upload .htaccess (from repo) via SCP
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          port: ${{ secrets.SERVER_PORT }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: "public/.htaccess"
+          target: ${{ secrets.REMOTE_PATH }}
