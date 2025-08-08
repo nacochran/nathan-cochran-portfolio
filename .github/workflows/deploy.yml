@@ -40,25 +40,25 @@ jobs:
           name: dist
           path: dist
 
-      - name: Deploy files via SCP
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.SERVER_USER }}
-          port: ${{ secrets.SERVER_PORT }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "dist/*,dist/.*"
-          target: ${{ secrets.REMOTE_PATH }}
-          rm: true
-          strip_components: 1
+      - name: Verify build output includes dotfiles
+        run: |
+          echo "Listing dist contents (including hidden):"
+          ls -la dist || true
 
-      - name: Upload .htaccess explicitly
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.SERVER_USER }}
-          port: ${{ secrets.SERVER_PORT }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "dist/.htaccess"
-          target: ${{ secrets.REMOTE_PATH }}
-          strip_components: 1
+      - name: Prepare SSH key
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/site_key
+          chmod 600 ~/.ssh/site_key
+          ssh-keyscan -p ${{ secrets.SERVER_PORT }} ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts 2>/dev/null || true
+
+      - name: Deploy via rsync (includes hidden files)
+        env:
+          SERVER_HOST: ${{ secrets.SERVER_HOST }}
+          SERVER_USER: ${{ secrets.SERVER_USER }}
+          SERVER_PORT: ${{ secrets.SERVER_PORT }}
+          REMOTE_PATH: ${{ secrets.REMOTE_PATH }}
+        run: |
+          rsync -az --delete -e "ssh -i ~/.ssh/site_key -p $SERVER_PORT -o StrictHostKeyChecking=no" dist/ $SERVER_USER@$SERVER_HOST:$REMOTE_PATH/
