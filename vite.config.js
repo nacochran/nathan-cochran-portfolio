@@ -16,7 +16,9 @@ export default defineConfig({
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
-  RewriteRule ^index\.html$ - [L]
+  # Never rewrite these explicit assets
+  RewriteRule ^(favicon.ico|site.webmanifest|robots.txt|sitemap.xml)$ - [L]
+  RewriteRule ^index.html$ - [L]
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteCond %{REQUEST_FILENAME} !-l
@@ -58,8 +60,12 @@ export default defineConfig({
   ExpiresDefault "access plus 2 days"
 </IfModule>
 
+# Ensure correct MIME types
+AddType image/x-icon .ico
+AddType application/manifest+json .webmanifest
+
 # Force favicon refresh
-<FilesMatch "^favicon\.(ico|png)$">
+<FilesMatch "^favicon.(ico|png)$">
   Header set Cache-Control "max-age=0, must-revalidate, public"
 </FilesMatch>`
         });
