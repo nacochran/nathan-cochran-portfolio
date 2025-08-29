@@ -41,7 +41,7 @@ const ServicePanel = ({ service }) => {
           </div>
 
           {/* Request Service Button */}
-          <div className="pt-4">
+          {/* <div className="pt-4">
             <Link
               to={`/contact?service=${serviceSlug}`}
               className="inline-block bg-blue-500 text-white font-medium px-6 py-2 rounded-lg hover:bg-blue-600 transition-colors"
@@ -49,7 +49,7 @@ const ServicePanel = ({ service }) => {
             >
               Request Service
             </Link>
-          </div>
+          </div> */}
         </div>
       </div>
     </motion.div>

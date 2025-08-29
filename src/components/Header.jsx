@@ -32,7 +32,7 @@ const Header = () => {
       case '/contact':
         return 'Contact';
       default:
-        return 'About';
+        return '404';
     }
   };
 
@@ -136,7 +136,7 @@ const Header = () => {
           <li><Link to="/skills" onClick={() => setIsMenuOpen(false)}>Skills</Link></li>
           <li><Link to="/projects" onClick={() => setIsMenuOpen(false)}>Projects</Link></li>
           <li><Link to="/services" onClick={() => setIsMenuOpen(false)}>Services</Link></li>
-          <li><Link to="/contact" onClick={() => setIsMenuOpen(false)}>Contact</Link></li>
+          {/* <li><Link to="/contact" onClick={() => setIsMenuOpen(false)}>Contact</Link></li> */}
         </ul>
       </nav>
     </header>
